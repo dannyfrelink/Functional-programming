@@ -1,3 +1,3 @@
-var data = require('./data.json');
+const data = require('./data.json');
 
 console.log(data);
