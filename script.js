@@ -1,25 +1,32 @@
 const data = require('./data.json');
 const lodash = require('lodash');
 
-const futureJob = 'Wat wil je worden als je groot bent?';
-
-// Antwoorden van vraag ophalen
-// const answersFutureJob = data.map(answers =>
-//     answers[futureJob]
-// );
-
-// // Eerste letter van woord hoofdletter geven
-// const capitalizeJob = data.map(word => 
-//     lodash.capitalize(word[futureJob])
-// );
-
-// console.log(capitalizeJob);
-
-
-function getAnswers(question) {
-    data.map(answers =>
-        answers[question]
+// Lowercase antwoorden van vraag ophalen
+function getLowercaseAnswers(question) {
+    return data.map(answers =>
+        answers[question].toLowerCase()
     );
 }
 
-console.log(getAnswers('Wat wil je worden als je groot bent?'));
+// console.log(getLowercaseAnswers('Wat wil je worden als je groot bent?'));
+
+// Eerste letter van woord hoofdletter geven
+function capitalizeAnswers(question) {
+    return data.map(answers =>
+        lodash.capitalize(answers[question])
+    );
+}
+
+
+
+// console.log(capitalizeAnswers('Wat wil je worden als je groot bent?'));
+
+const changeAnswers = data.filter(answers => 
+    answers['Wat wil je worden als je groot bent?'].match('(front|Front)')
+);
+
+changeAnswers.forEach(answer => 
+    answer['Wat wil je worden als je groot bent?'] = 'Front-end Developer'
+)
+
+console.log(changeAnswers)
