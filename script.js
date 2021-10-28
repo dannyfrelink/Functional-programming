@@ -72,15 +72,16 @@ function changeAnswers() {
     // doubleAnswer.forEach(answer =>
     //     answer['Wat wil je worden als je groot bent?'].split(' of ' || ' / ').shift()
     // );
-
-
 }
 
 changeAnswers();
 
 app.get('/', async (req, res) => {
 	res.render('index', {
-        frontEnd
+        frontEnd,
+        happy,
+        rich,
+        noIdea
     });
 });
 

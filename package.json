@@ -1,0 +1,24 @@
+{
+  "name": "functional-programming",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "start": "node script.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dannyfrelink/Functional-programming.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dannyfrelink/Functional-programming/issues"
+  },
+  "homepage": "https://github.com/dannyfrelink/Functional-programming#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash": "^4.17.21"
+  }
+}
