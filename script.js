@@ -8,8 +8,6 @@ function getLowercaseAnswers(question) {
     );
 }
 
-// console.log(getLowercaseAnswers('Wat wil je worden als je groot bent?'));
-
 // Eerste letter van woord hoofdletter geven
 function capitalizeAnswers(question) {
     return data.map(answers =>
@@ -17,31 +15,28 @@ function capitalizeAnswers(question) {
     );
 }
 
-// console.log(filterAnswers('Wat wil je worden als je groot bent?'));
-
-
-// console.log(capitalizeAnswers('Wat wil je worden als je groot bent?'));
-
-// const changeAnswers = data.filter(answers => 
-//     answers['Wat wil je worden als je groot bent?'].match('(front|Front)')
-// );
-
-// changeAnswers.forEach(answer => 
-//     answer['Wat wil je worden als je groot bent?'] = 'Front-end Developer'
-// );
-
-// console.log(changeAnswers);
-
+// Aanpassing van antwoorden (gelijke benamingen)
 let frontEnd;
-let geenIdee;
-
+let noIdea;
+let happy;
+let rich;
+let doubleAnswer;
 
 function filterAnswers() {
     frontEnd = data.filter(answers => 
         answers['Wat wil je worden als je groot bent?'].match('(front|Front)')
     );
-    geenIdee = data.filter(answers => 
+    noIdea = data.filter(answers => 
         answers['Wat wil je worden als je groot bent?'].match('(geen|Geen)')
+    );
+    happy = data.filter(answers => 
+        answers['Wat wil je worden als je groot bent?'].match('(blij|Gelukkig)')
+    );
+    rich = data.filter(answers => 
+        answers['Wat wil je worden als je groot bent?'].match('(rijk|Rijk|Welvarend|Multimiljonair)')
+    );
+    doubleAnswer = data.filter(answers => 
+        answers['Wat wil je worden als je groot bent?'].match('( of| /)')
     );
 }
 
@@ -51,12 +46,21 @@ function changeAnswers() {
     frontEnd.forEach(answer => 
         answer['Wat wil je worden als je groot bent?'] = 'Front-end Developer'
     );
-    geenIdee.forEach(answer => 
+    noIdea.forEach(answer => 
         answer['Wat wil je worden als je groot bent?'] = 'Geen idee'
     );
+    happy.forEach(answer => 
+        answer['Wat wil je worden als je groot bent?'] = 'Gelukkig'
+    );
+    rich.forEach(answer => 
+        answer['Wat wil je worden als je groot bent?'] = 'Rijk'
+    );
+    doubleAnswer[0]['Wat wil je worden als je groot bent?'] = doubleAnswer[0]['Wat wil je worden als je groot bent?'].split(' / ').shift()
+    doubleAnswer[1]['Wat wil je worden als je groot bent?'] = doubleAnswer[1]['Wat wil je worden als je groot bent?'].split(' of ').shift()
+
+    // doubleAnswer.forEach(answer =>
+    //     console.log(answer['Wat wil je worden als je groot bent?'].split(' of ' || ' / '))
+    // );
 }
 
 changeAnswers();
-
-console.log(frontEnd);
-
