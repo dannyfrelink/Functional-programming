@@ -1,5 +1,11 @@
+const express = require('express');
+const app = express();
+const port = 5555;
 const data = require('./data.json');
 const lodash = require('lodash');
+
+// app.use(express.static('public'));
+app.set('view engine', 'ejs');
 
 // Lowercase antwoorden van vraag ophalen
 function getLowercaseAnswers(question) {
@@ -15,52 +21,73 @@ function capitalizeAnswers(question) {
     );
 }
 
-// Aanpassing van antwoorden (gelijke benamingen)
+// Aanpassing van soortgelijke antwoorden
 let frontEnd;
 let noIdea;
 let happy;
 let rich;
 let doubleAnswer;
 
+const capitalizedAnswers = data.map(answers =>
+    lodash.capitalize(answers['Wat wil je worden als je groot bent?'])
+);
+
 function filterAnswers() {
-    frontEnd = data.filter(answers => 
-        answers['Wat wil je worden als je groot bent?'].match('(front|Front)')
+    frontEnd = capitalizedAnswers.filter(answers => 
+        answers.match('Front')
     );
-    noIdea = data.filter(answers => 
-        answers['Wat wil je worden als je groot bent?'].match('(geen|Geen)')
+    noIdea = capitalizedAnswers.filter(answers => 
+        answers.match('Geen')
     );
-    happy = data.filter(answers => 
-        answers['Wat wil je worden als je groot bent?'].match('(blij|Gelukkig)')
+    happy = capitalizedAnswers.filter(answers => 
+        answers.match('(Blij|Gelukkig)')
     );
-    rich = data.filter(answers => 
-        answers['Wat wil je worden als je groot bent?'].match('(rijk|Rijk|Welvarend|Multimiljonair)')
+    rich = capitalizedAnswers.filter(answers => 
+        answers.match('(Rijk|Welvarend|Multimiljonair)')
     );
-    doubleAnswer = data.filter(answers => 
-        answers['Wat wil je worden als je groot bent?'].match('( of| /)')
+    doubleAnswer = capitalizedAnswers.filter(answers => 
+        answers.match('( of | / )')
     );
 }
 
 filterAnswers();
 
 function changeAnswers() {
-    frontEnd.forEach(answer => 
-        answer['Wat wil je worden als je groot bent?'] = 'Front-end Developer'
-    );
-    noIdea.forEach(answer => 
-        answer['Wat wil je worden als je groot bent?'] = 'Geen idee'
-    );
-    happy.forEach(answer => 
-        answer['Wat wil je worden als je groot bent?'] = 'Gelukkig'
-    );
-    rich.forEach(answer => 
-        answer['Wat wil je worden als je groot bent?'] = 'Rijk'
-    );
-    doubleAnswer[0]['Wat wil je worden als je groot bent?'] = doubleAnswer[0]['Wat wil je worden als je groot bent?'].split(' / ').shift()
-    doubleAnswer[1]['Wat wil je worden als je groot bent?'] = doubleAnswer[1]['Wat wil je worden als je groot bent?'].split(' of ').shift()
+    for(var i = 0; i < frontEnd.length; i++){
+        frontEnd[i] = 'Front-end Developer';
+    }
+    for(var i = 0; i < noIdea.length; i++){
+        noIdea[i] = 'Geen idee';
+    }
+    for(var i = 0; i < happy.length; i++){
+        happy[i] = 'Gelukkig';
+    }
+    for(var i = 0; i < rich.length; i++){
+        rich[i] = 'Rijk';
+    }
+
+    doubleAnswer[0] = doubleAnswer[0].split(' / ').shift()
+    doubleAnswer[1] = doubleAnswer[1].split(' of ').shift()
 
     // doubleAnswer.forEach(answer =>
-    //     console.log(answer['Wat wil je worden als je groot bent?'].split(' of ' || ' / '))
+    //     answer['Wat wil je worden als je groot bent?'].split(' of ' || ' / ').shift()
     // );
+
+
 }
 
 changeAnswers();
+
+app.get('/', async (req, res) => {
+	res.render('index', {
+        frontEnd
+    });
+});
+
+app.use(function (req, res) {
+	res.status(404).send('Sorry, could not find this page.');
+});
+
+app.listen(port, () => {
+	console.log(`Listening on port: ${port}`);
+});
