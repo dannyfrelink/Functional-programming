@@ -67,8 +67,6 @@ function filterAnswers() {
 
 filterAnswers();
 
-console.log(other);
-
 function changeAnswers() {
     for(var i = 0; i < frontEnd.length; i++){
         frontEnd[i] = 'Front-end Developer';
