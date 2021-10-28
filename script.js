@@ -26,7 +26,10 @@ let frontEnd;
 let noIdea;
 let happy;
 let rich;
+let successful;
 let doubleAnswer;
+// let noOther;
+let other;
 
 const capitalizedAnswers = data.map(answers =>
     lodash.capitalize(answers['Wat wil je worden als je groot bent?'])
@@ -45,12 +48,26 @@ function filterAnswers() {
     rich = capitalizedAnswers.filter(answers => 
         answers.match('(Rijk|Welvarend|Multimiljonair)')
     );
+    successful = capitalizedAnswers.filter(answers => 
+        answers.match('Succesvol')
+    );
     doubleAnswer = capitalizedAnswers.filter(answers => 
         answers.match('( of | / )')
     );
+    // for(var i = 0; i < capitalizedAnswers.length; i++){
+    //     other = capitalizedAnswers.filter(answers => 
+    //         console.log(i)
+    //     );
+    // }
+    other = capitalizedAnswers.filter(answers => 
+        !answers.match('(Front|Geen|Blij|Gelukkig|Rijk|Welvarend|Multimiljonair|Succesvol)')
+    );
+    // noOther = frontEnd.concat(noIdea, happy, rich, successful);
 }
 
 filterAnswers();
+
+console.log(other);
 
 function changeAnswers() {
     for(var i = 0; i < frontEnd.length; i++){
@@ -68,10 +85,6 @@ function changeAnswers() {
 
     doubleAnswer[0] = doubleAnswer[0].split(' / ').shift()
     doubleAnswer[1] = doubleAnswer[1].split(' of ').shift()
-
-    // doubleAnswer.forEach(answer =>
-    //     answer['Wat wil je worden als je groot bent?'].split(' of ' || ' / ').shift()
-    // );
 }
 
 changeAnswers();
@@ -81,7 +94,9 @@ app.get('/', async (req, res) => {
         frontEnd,
         happy,
         rich,
-        noIdea
+        noIdea,
+        successful,
+        other
     });
 });
 
