@@ -17,16 +17,46 @@ function capitalizeAnswers(question) {
     );
 }
 
+// console.log(filterAnswers('Wat wil je worden als je groot bent?'));
 
 
 // console.log(capitalizeAnswers('Wat wil je worden als je groot bent?'));
 
-const changeAnswers = data.filter(answers => 
-    answers['Wat wil je worden als je groot bent?'].match('(front|Front)')
-);
+// const changeAnswers = data.filter(answers => 
+//     answers['Wat wil je worden als je groot bent?'].match('(front|Front)')
+// );
 
-changeAnswers.forEach(answer => 
-    answer['Wat wil je worden als je groot bent?'] = 'Front-end Developer'
-)
+// changeAnswers.forEach(answer => 
+//     answer['Wat wil je worden als je groot bent?'] = 'Front-end Developer'
+// );
 
-console.log(changeAnswers)
+// console.log(changeAnswers);
+
+let frontEnd;
+let geenIdee;
+
+
+function filterAnswers() {
+    frontEnd = data.filter(answers => 
+        answers['Wat wil je worden als je groot bent?'].match('(front|Front)')
+    );
+    geenIdee = data.filter(answers => 
+        answers['Wat wil je worden als je groot bent?'].match('(geen|Geen)')
+    );
+}
+
+filterAnswers();
+
+function changeAnswers() {
+    frontEnd.forEach(answer => 
+        answer['Wat wil je worden als je groot bent?'] = 'Front-end Developer'
+    );
+    geenIdee.forEach(answer => 
+        answer['Wat wil je worden als je groot bent?'] = 'Geen idee'
+    );
+}
+
+changeAnswers();
+
+console.log(frontEnd);
+
