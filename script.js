@@ -4,7 +4,7 @@ const port = 5555;
 const data = require('./data.json');
 const lodash = require('lodash');
 
-// app.use(express.static('public'));
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 // Lowercase antwoorden van vraag ophalen
@@ -21,71 +21,36 @@ function capitalizeAnswers(question) {
     );
 }
 
-// Aanpassing van soortgelijke antwoorden
-let frontEnd;
-let noIdea;
-let happy;
-let rich;
-let successful;
-let doubleAnswer;
-// let noOther;
-let other;
+// Functie met alle opschoning van de data
+let cleanData = () => {
+    // Filter alleen antwoorden van één vraag
+    let dataSet = data.map((data) => {
+        return data['Wat wil je worden als je groot bent?'];
+    });
+    
+    // Pas alle antwoorden aan
+    return changedData = dataSet.map((data) => {
+        if (typeof data === 'string' && data.length > 1) {
+            data = data
+                .toLowerCase()
+                .replace(/[^\w\s]/gi, '')
+                .replace('frontend', 'front-end')
+                .replace(/code designer|front-ender|webdeveloper  webdesigner/gi, 'front-end developer')
+                .replace('lead bij een design agency of zelfstandig ondernemer', 'ondernemer')
+                .replace(/geen idee we zien wel hoe het loopt|geen idee/gi, 'geen antwoord')
+                .replace(/rijk|multimiljonair/gi, 'welvarend')
+                .replace('blij', 'gelukkig')
+                .replace('fietsen maken', 'fietsenmaker');
+                return data.charAt(0).toUpperCase() + data.slice(1);
+        } else {
+            return 'Geen antwoord';
+        }
+    });
+};
 
-const capitalizedAnswers = data.map(answers =>
-    lodash.capitalize(answers['Wat wil je worden als je groot bent?'])
-);
+cleanData();
 
-function filterAnswers() {
-    frontEnd = capitalizedAnswers.filter(answers => 
-        answers.match('Front')
-    );
-    noIdea = capitalizedAnswers.filter(answers => 
-        answers.match('Geen')
-    );
-    happy = capitalizedAnswers.filter(answers => 
-        answers.match('(Blij|Gelukkig)')
-    );
-    rich = capitalizedAnswers.filter(answers => 
-        answers.match('(Rijk|Welvarend|Multimiljonair)')
-    );
-    successful = capitalizedAnswers.filter(answers => 
-        answers.match('Succesvol')
-    );
-    doubleAnswer = capitalizedAnswers.filter(answers => 
-        answers.match('( of | / )')
-    );
-    // for(var i = 0; i < capitalizedAnswers.length; i++){
-    //     other = capitalizedAnswers.filter(answers => 
-    //         console.log(i)
-    //     );
-    // }
-    other = capitalizedAnswers.filter(answers => 
-        !answers.match('(Front|Geen|Blij|Gelukkig|Rijk|Welvarend|Multimiljonair|Succesvol)')
-    );
-    // noOther = frontEnd.concat(noIdea, happy, rich, successful);
-}
-
-filterAnswers();
-
-function changeAnswers() {
-    for(var i = 0; i < frontEnd.length; i++){
-        frontEnd[i] = 'Front-end Developer';
-    }
-    for(var i = 0; i < noIdea.length; i++){
-        noIdea[i] = 'Geen idee';
-    }
-    for(var i = 0; i < happy.length; i++){
-        happy[i] = 'Gelukkig';
-    }
-    for(var i = 0; i < rich.length; i++){
-        rich[i] = 'Rijk';
-    }
-
-    doubleAnswer[0] = doubleAnswer[0].split(' / ').shift()
-    doubleAnswer[1] = doubleAnswer[1].split(' of ').shift()
-}
-
-changeAnswers();
+console.log(changedData);
 
 app.get('/', async (req, res) => {
 	res.render('index', {
