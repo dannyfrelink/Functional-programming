@@ -1,21 +1,93 @@
-import fetch from "node-fetch";
+import fetch from 'node-fetch';
+import countriesList from 'countries-list'
+const countries = Object.values(countriesList.countries); 
 
-fetch("https://currency-converter5.p.rapidapi.com/currency/convert?format=json&from=AUD&to=CAD&amount=1", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "currency-converter5.p.rapidapi.com",
-		"x-rapidapi-key": "d049923f05mshe1a2ad3cc776bebp102006jsnd2a7bbcc040d"
+// https://rapidapi.com/exchangerateapi/api/exchangerate-api/
+fetch('https://exchangerate-api.p.rapidapi.com/rapid/latest/EUR', {
+	'method': 'GET',
+	'headers': {
+		'x-rapidapi-host': 'exchangerate-api.p.rapidapi.com',
+		'x-rapidapi-key': 'd049923f05mshe1a2ad3cc776bebp102006jsnd2a7bbcc040d'
 	}
 })
-.then(response => {
-	console.log(response);
-})
-.catch(err => {
-	console.error(err);
-});
+    .then(res => res.json())
+    .then(data => {
+        // console.log(data.rates)
+        let southAmerika = [];
+        let northAmerika = [];
+        let europe = [];
+        let afrika = [];
+        let asia = [];
+        let oceania = [];
+        let antartica = [];
+
+        countries.forEach(country => {
+            const currencies = country.currency.split(',').shift();
+
+            switch(country.continent) {
+                case 'SA':
+                    southAmerika.push(currencies)
+                    break;
+                case 'NA':
+                    northAmerika.push(currencies)
+                    break;
+                case 'EU':
+                    europe.push(currencies)
+                    break;
+                case 'AF':
+                    afrika.push(currencies)
+                    break;
+                case 'AS':
+                    asia.push(currencies)
+                    break;
+                case 'OC':
+                    oceania.push(currencies)
+                    break;
+                case 'AN':
+                    antartica.push(currencies)
+                    break;
+            }
+
+            // if(country.continent === 'SA') {
+            //     allCurrencies.push(country.currency)
+            // }
+            // allCurrencies.push(country.currency);
+
+            // const test = Object.keys(data.rates).forEach(key => {
+            //     console.log(key)
+            // });
+        });
+
+        // function removeDuplicates(continent) {
+        //     return continent = [...new Set(continent)]
+        // }
+
+        // removeDuplicates(southAmerika)
+        // removeDuplicates(northAmerika)
+        // removeDuplicates(europe)
+        // removeDuplicates(afrika)
+        // removeDuplicates(asia)
+        // removeDuplicates(oceania)
+        // removeDuplicates(antartica)
 
 
 
+        southAmerika = [...new Set(southAmerika)];
+        northAmerika = [...new Set(northAmerika)];
+        europe = [...new Set(europe)];
+        afrika = [...new Set(afrika)];
+        asia = [...new Set(asia)];
+        oceania = [...new Set(oceania)];
+        antartica = [...new Set(antartica)];
+
+        // console.log(europe)
+
+        // doubleAnswer[0]['Wat wil je worden als je groot bent?'].split(' / ').shift()
+
+    })
+    .catch(err => {
+        console.error(err);
+    });
 
 
 
@@ -105,7 +177,6 @@ fetch("https://currency-converter5.p.rapidapi.com/currency/convert?format=json&f
 // //     console.log(data.match('Front'))
 // // }, 0)
 
-
 // const test = changedData.reduce((b,c)=>((b[b.findIndex(d=>d.el===c)]||b[b.push({el:c,count:0})-1]).count++,b),[]);
 
 // // test.forEach(test2 => {
@@ -142,9 +213,9 @@ fetch("https://currency-converter5.p.rapidapi.com/currency/convert?format=json&f
 // // );
 
 // // const filterData = (match) => {
-// //     changedData.filter(answers => 
-// //         answers.match(match)
-// //     );
+// //    changedData.filter(answers => 
+// //        answers.match(match)
+// //    );
 // // }
 
 // // console.log(filterData('"Front"'));
