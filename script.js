@@ -82,8 +82,6 @@ fetch('https://exchangerate-api.p.rapidapi.com/rapid/latest/EUR', {
 
         // console.log(europe)
 
-        // doubleAnswer[0]['Wat wil je worden als je groot bent?'].split(' / ').shift()
-
     })
     .catch(err => {
         console.error(err);
