@@ -16,9 +16,11 @@
   "bugs": {
     "url": "https://github.com/dannyfrelink/Functional-programming/issues"
   },
+  "type": "module",
   "homepage": "https://github.com/dannyfrelink/Functional-programming#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "node-fetch": "^3.0.0"
   }
 }
