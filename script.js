@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import countriesList from 'countries-list';
 const countries = Object.values(countriesList.countries); 
 
-// https://rapidapi.com/exchangerateapi/api/exchangerate-api/
+// Ophalen API Currency exchange rate https://rapidapi.com/exchangerateapi/api/exchangerate-api/
 fetch('https://exchangerate-api.p.rapidapi.com/rapid/latest/EUR', {
 	'method': 'GET',
 	'headers': {
@@ -13,6 +13,8 @@ fetch('https://exchangerate-api.p.rapidapi.com/rapid/latest/EUR', {
     .then(res => res.json())
     .then(data => {
         // console.log(data.rates)
+
+        // Verdelen van alle valuta's per continent
         let europe = countries
             .filter(country => country.continent === 'EU')
             .map(country => country.currency.split(',').shift())
@@ -42,8 +44,6 @@ fetch('https://exchangerate-api.p.rapidapi.com/rapid/latest/EUR', {
             .filter(country => country.continent === 'OC')
             .map(country => country.currency.split(',').shift())
             .reduce((j, k) => j.add(k), new Set())
-
-        console.log(asia)
     })
     .catch(err => {
         console.error(err);
