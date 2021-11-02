@@ -15,6 +15,10 @@ I've chosen to filter all the currencies and it's exchange rate into the contine
 
 As I already told in [Concept](https://github.com/dannyfrelink/Functional-programming#Concept), I'm looking forward to making a visualisation around this API. It will give d information about which continent will make you the 'richest' by average. For the functional programming part, I would've liked to be able to try out a couple more filters. Since the API was pretty clean by itself and I wanted to use all the data, filtering was quite hard to do.
 
+## Process (Wiki)
+
+You can find all the progression of my work documented in my [Wiki](https://github.com/dannyfrelink/Functional-programming/wiki).
+
 ## Installing
 
 If you're looking to use my code for yourself, you can clone this GitHub repository:
