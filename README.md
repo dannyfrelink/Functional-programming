@@ -35,10 +35,3 @@ As I already told in [Concept](https://github.com/dannyfrelink/Functional-progra
 ## License
 
 Voor mijn repository heb ik gebruik gemaakt van een [MIT License](https://github.com/dannyfrelink/Functional-programming/blob/main/LICENSE)
-
-
-
-
-Technische informatie​
-
-Verwijzing(en) naar de wiki​
