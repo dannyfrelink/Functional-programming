@@ -2,6 +2,7 @@
 
 * [Concept](https://github.com/dannyfrelink/Functional-programming#concept)
 * [Wishlist](https://github.com/dannyfrelink/Functional-programming#wishlist)
+* [Wiki](https://github.com/dannyfrelink/Functional-programming#wiki)
 * [Installing](https://github.com/dannyfrelink/Functional-programming#installing)
 * [License](https://github.com/dannyfrelink/Functional-programming#license)
 
@@ -38,4 +39,4 @@ npm start
 
 ## License
 
-Voor mijn repository heb ik gebruik gemaakt van een [MIT License](https://github.com/dannyfrelink/Functional-programming/blob/main/LICENSE)
+I have used the [MIT License](https://github.com/dannyfrelink/Functional-programming/blob/main/LICENSE) for this repository.
