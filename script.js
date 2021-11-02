@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import countriesList from 'countries-list'
+import countriesList from 'countries-list';
 const countries = Object.values(countriesList.countries); 
 
 // https://rapidapi.com/exchangerateapi/api/exchangerate-api/
@@ -13,53 +13,69 @@ fetch('https://exchangerate-api.p.rapidapi.com/rapid/latest/EUR', {
     .then(res => res.json())
     .then(data => {
         // console.log(data.rates)
-        let southAmerika = [];
-        let northAmerika = [];
-        let europe = [];
-        let afrika = [];
-        let asia = [];
-        let oceania = [];
-        let antartica = [];
+        let europe = countries
+            .filter(country => country.continent === 'EU')
+            .map(country => country.currency.split(',').shift())
+            .reduce((j, k) => j.add(k), new Set())
 
-        countries.forEach(country => {
-            const currencies = country.currency.split(',').shift();
+        let southAmerika = countries
+            .filter(country => country.continent === 'SA')
+            .map(country => country.currency.split(',').shift())
+            .reduce((j, k) => j.add(k), new Set())
 
-            switch(country.continent) {
-                case 'SA':
-                    southAmerika.push(currencies)
-                    break;
-                case 'NA':
-                    northAmerika.push(currencies)
-                    break;
-                case 'EU':
-                    europe.push(currencies)
-                    break;
-                case 'AF':
-                    afrika.push(currencies)
-                    break;
-                case 'AS':
-                    asia.push(currencies)
-                    break;
-                case 'OC':
-                    oceania.push(currencies)
-                    break;
-                case 'AN':
-                    antartica.push(currencies)
-                    break;
-            }
+        let northAmerika = countries
+            .filter(country => country.continent === 'NA')
+            .map(country => country.currency.split(',').shift())
+            .reduce((j, k) => j.add(k), new Set())
 
-            // if(country.continent === 'SA') {
-            //     allCurrencies.push(country.currency)
-            // }
-            // allCurrencies.push(country.currency);
+        let afrika = countries
+            .filter(country => country.continent === 'AF')
+            .map(country => country.currency.split(',').shift())
+            .reduce((j, k) => j.add(k), new Set())
 
-            // const test = Object.keys(data.rates).forEach(key => {
-            //     console.log(key)
-            // });
-        });
+        let asia = countries
+            .filter(country => country.continent === 'AS')
+            .map(country => country.currency.split(',').shift())
+            .reduce((j, k) => j.add(k), new Set())
+
+        let oceania = countries
+            .filter(country => country.continent === 'OC')
+            .map(country => country.currency.split(',').shift())
+            .reduce((j, k) => j.add(k), new Set())
+
+        console.log(asia)
+
+        // countries.forEach(country => {
+        //     const currencies = country.currency.split(',').shift();
+
+        //     switch(country.continent) {
+        //         case 'SA':
+        //             southAmerika.push(currencies)
+        //             break;
+        //         case 'NA':
+        //             northAmerika.push(currencies)
+        //             break;
+        //         case 'EU':
+        //             europe.push(currencies)
+        //             break;
+        //         case 'AF':
+        //             afrika.push(currencies)
+        //             break;
+        //         case 'AS':
+        //             asia.push(currencies)
+        //             break;
+        //         case 'OC':
+        //             oceania.push(currencies)
+        //             break;
+        //         case 'AN':
+        //             antartica.push(currencies)
+        //             break;
+        //     }
+        // });
+
 
         // function removeDuplicates(continent) {
-        //     return continent = [...new Set(continent)]
+        //     continent = [...new Set(continent)]            
         // }
 
         // removeDuplicates(southAmerika)
@@ -71,16 +87,22 @@ fetch('https://exchangerate-api.p.rapidapi.com/rapid/latest/EUR', {
         // removeDuplicates(antartica)
 
 
-
-        southAmerika = [...new Set(southAmerika)];
-        northAmerika = [...new Set(northAmerika)];
-        europe = [...new Set(europe)];
-        afrika = [...new Set(afrika)];
-        asia = [...new Set(asia)];
-        oceania = [...new Set(oceania)];
-        antartica = [...new Set(antartica)];
+        // dubbele waardes uit array halen: https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/
+        // southAmerika = [...new Set(southAmerika)];
+        // northAmerika = [...new Set(northAmerika)];
+        // europe = [...new Set(europe)];
+        // afrika = [...new Set(afrika)];
+        // asia = [...new Set(asia)];
+        // oceania = [...new Set(oceania)];
+        // antartica = [...new Set(antartica)];
 
         // console.log(europe)
+
+        // Object.keys(data.rates).forEach(key => {
+        //     if(southAmerika.includes(key)) {
+
+        //     }
+        // })
 
     })
     .catch(err => {
@@ -220,7 +242,7 @@ fetch('https://exchangerate-api.p.rapidapi.com/rapid/latest/EUR', {
 
 // app.get('/', async (req, res) => {
 // 	res.render('index', {
-//         test
+        
 //     });
 // });
 
