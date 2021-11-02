@@ -3,6 +3,7 @@
 * [Concept](https://github.com/dannyfrelink/Functional-programming#concept)
 * [Installing](https://github.com/dannyfrelink/Functional-programming#installing)
 * [Wishlist](https://github.com/dannyfrelink/Functional-programming#wishlist)
+* [License](https://github.com/dannyfrelink/Functional-programming#license)
 
 ## Concept
 
@@ -34,3 +35,10 @@ As I already told in [Concept](https://github.com/dannyfrelink/Functional-progra
 ## License
 
 Voor mijn repository heb ik gebruik gemaakt van een [MIT License](https://github.com/dannyfrelink/Functional-programming/blob/main/LICENSE)
+
+
+
+
+Technische informatie​
+
+Verwijzing(en) naar de wiki​
