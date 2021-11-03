@@ -4,8 +4,8 @@ Welcome to the Readme for my repository for Functional Programming. You can find
 ## Table of Contents
 
 * [Concept](https://github.com/dannyfrelink/Functional-programming#concept)
-* [Wishlist](https://github.com/dannyfrelink/Functional-programming#wishlist)
 * [Process (Wiki)](https://github.com/dannyfrelink/Functional-programming#wiki)
+* [Wishlist](https://github.com/dannyfrelink/Functional-programming#wishlist)
 * [Installing](https://github.com/dannyfrelink/Functional-programming#installing)
 * [License](https://github.com/dannyfrelink/Functional-programming#license)
 
@@ -15,13 +15,13 @@ I've received the assignment to transfer data to my code editor and pursue to fi
 
 I've chosen to filter all the currencies and it's exchange rate into the continent it is a part of. This is done with the idea of making a visualisation about this in the future. The visualisation will show the amount of money you will have in each continent after exchanging €1,-.
 
-## Wishlist
-
-As I already told in [Concept](https://github.com/dannyfrelink/Functional-programming#Concept), I'm looking forward to making a visualisation around this API. It will give d information about which continent will make you the 'richest' by average. For the functional programming part, I would've liked to be able to try out a couple more filters. Since the API was pretty clean by itself and I wanted to use all the data, filtering was quite hard to do.
-
 ## Process (Wiki)
 
 You can find all the progression of my work documented in my [Wiki](https://github.com/dannyfrelink/Functional-programming/wiki).
+
+## Wishlist
+
+As I already told in [Concept](https://github.com/dannyfrelink/Functional-programming#Concept), I'm looking forward to making a visualisation around this API. It will give d information about which continent will make you the 'richest' by average. For the functional programming part, I would've liked to be able to try out a couple more filters. Since the API was pretty clean by itself and I wanted to use all the data, filtering was quite hard to do.
 
 ## Installing
 
