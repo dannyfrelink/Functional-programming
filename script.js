@@ -13,8 +13,6 @@ const dataOphalen = () => {
     })
         .then(res => res.json())
         .then(data => {
-            // console.log(data.rates);
-
             europe = filterContinents(data, europe);
             europe = removeUndefined(europe);
 
@@ -32,10 +30,6 @@ const dataOphalen = () => {
 
             oceania = filterContinents(data, oceania);
             oceania = removeUndefined(oceania);
-
-            console.log(oceania);
-
-
         })
         .catch(err => {
             console.error(err);
