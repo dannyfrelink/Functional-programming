@@ -13,23 +13,47 @@ const dataOphalen = () => {
     })
         .then(res => res.json())
         .then(data => {
-            europe = filterContinents(data, europe);
+            // European callbacks
+            let europe = filterContinents(data, europeanCurrencies);
             europe = removeUndefined(europe);
+            let valuesEurope = getCurrencyValues(data, europeanCurrencies);
+            valuesEurope = removeUndefined(valuesEurope);
+            const averageEurope = Math.round(valuesEurope.reduce((a,b) => a + b, 0) / valuesEurope.length)
 
-            southAmerika = filterContinents(data, southAmerika);
+            // SouthAmerican callbacks
+            let southAmerika = filterContinents(data, southAmericanCurrencies);
             southAmerika = removeUndefined(southAmerika);
+            let valuesSouthAmerika = getCurrencyValues(data, southAmericanCurrencies);
+            valuesSouthAmerika = removeUndefined(valuesSouthAmerika);
+            const averageSouthAmerika = Math.round(valuesSouthAmerika.reduce((a,b) => a + b, 0) / valuesSouthAmerika.length)
 
-            northAmerika = filterContinents(data, northAmerika);
+            // NorthAmerican callbacks
+            let northAmerika = filterContinents(data, northAmericanCurrencies);
             northAmerika = removeUndefined(northAmerika);
+            let valuesNorthAmerika = getCurrencyValues(data, northAmericanCurrencies);
+            valuesNorthAmerika = removeUndefined(valuesNorthAmerika);
+            const averageNorthAmerika = Math.round(valuesNorthAmerika.reduce((a,b) => a + b, 0) / valuesNorthAmerika.length)
 
-            africa = filterContinents(data, africa);
+            // African callbacks
+            let africa = filterContinents(data, africanCurrencies);
             africa = removeUndefined(africa);
+            let valuesAfrica = getCurrencyValues(data, africanCurrencies);
+            valuesAfrica = removeUndefined(valuesAfrica);
+            const averageAfrica = Math.round(valuesAfrica.reduce((a,b) => a + b, 0) / valuesAfrica.length)
 
-            asia = filterContinents(data, asia);
+            // Asian callbacks
+            let asia = filterContinents(data, asianCurrencies);
             asia = removeUndefined(asia);
+            let valuesAsia = getCurrencyValues(data, asianCurrencies);
+            valuesAsia = removeUndefined(valuesAsia);
+            const averageAsia = Math.round(valuesAsia.reduce((a,b) => a + b, 0) / valuesAsia.length)
 
-            oceania = filterContinents(data, oceania);
+            // Oceanian callbacks
+            let oceania = filterContinents(data, oceanianCurrencies);
             oceania = removeUndefined(oceania);
+            let valuesOceania = getCurrencyValues(data, oceanianCurrencies);
+            valuesOceania = removeUndefined(valuesOceania);
+            const averageOceania = Math.round(valuesOceania.reduce((a,b) => a + b, 0) / valuesOceania.length)
         })
         .catch(err => {
             console.error(err);
@@ -38,32 +62,32 @@ const dataOphalen = () => {
 dataOphalen();
 
 // Verdelen van alle valuta's per continent
-let europe = countries
+const europeanCurrencies = countries
     .filter(country => country.continent === 'EU')
     .map(country => country.currency.split(',').shift())
     .reduce((j, k) => j.add(k), new Set())
 
-let southAmerika = countries
+const southAmericanCurrencies = countries
     .filter(country => country.continent === 'SA')
     .map(country => country.currency.split(',').shift())
     .reduce((j, k) => j.add(k), new Set())
 
-let northAmerika = countries
+const northAmericanCurrencies = countries
     .filter(country => country.continent === 'NA')
     .map(country => country.currency.split(',').shift())
     .reduce((j, k) => j.add(k), new Set())
 
-let africa = countries
+const africanCurrencies = countries
     .filter(country => country.continent === 'AF')
     .map(country => country.currency.split(',').shift())
     .reduce((j, k) => j.add(k), new Set())
 
-let asia = countries
+const asianCurrencies = countries
     .filter(country => country.continent === 'AS')
     .map(country => country.currency.split(',').shift())
     .reduce((j, k) => j.add(k), new Set())
 
-let oceania = countries
+const oceanianCurrencies = countries
     .filter(country => country.continent === 'OC')
     .map(country => country.currency.split(',').shift())
     .reduce((j, k) => j.add(k), new Set())
@@ -81,5 +105,14 @@ const filterContinents = (data, continent) => {
 const removeUndefined = continent => {
     return continent.filter(entry => {
         return entry !== undefined;
+    });
+}
+
+// Ophalen alle waardes per continent
+const getCurrencyValues = (data, continent) => {
+    return Object.keys(data.rates).map(key => {
+        if(continent.has(key) && key !== 'EUR') {
+            return data.rates[key]
+        }
     });
 }
