@@ -45,26 +45,7 @@ fetch('https://exchangerate-api.p.rapidapi.com/rapid/latest/EUR', {
             .map(country => country.currency.split(',').shift())
             .reduce((j, k) => j.add(k), new Set())
 
-
-        // Object.keys(data.rates).forEach(key => {
-        //     // console.log(europe.has(key))
-            
-        //     if(europe.has(key)) {
-        //         // console.log('test')
-        //         let test = Object.values(data.rates).map(value => value)
-
-        //         console.log(test);
-        //     }
-        // })
-
-        // let test2 = Object.entries(data.rates).filter(entry => {
-        //     return entry;
-        //     // if(europe.has(value)) {
-        //     //     return value
-        //     // }
-        // });
-
-        // console.log(test2)
+        // Sorteer API per continent
 
         // function filterContinents(test) {
         //     Object.keys(data.rates).map(key => {
@@ -76,9 +57,7 @@ fetch('https://exchangerate-api.p.rapidapi.com/rapid/latest/EUR', {
 
         // europe = filterContinents(europe);
 
-        // console.log(test)
-
-
+        // console.log(europe)
 
         europe = Object.keys(data.rates).map(key => {
             if(europe.has(key)) {
