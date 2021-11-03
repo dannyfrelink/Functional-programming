@@ -17,7 +17,23 @@ const dataOphalen = () => {
 
             europe = filterContinents(data, europe);
             europe = removeUndefined(europe);
-            console.log(europe);
+
+            southAmerika = filterContinents(data, southAmerika);
+            southAmerika = removeUndefined(southAmerika);
+
+            northAmerika = filterContinents(data, northAmerika);
+            northAmerika = removeUndefined(northAmerika);
+
+            africa = filterContinents(data, africa);
+            africa = removeUndefined(africa);
+
+            asia = filterContinents(data, asia);
+            asia = removeUndefined(asia);
+
+            oceania = filterContinents(data, oceania);
+            oceania = removeUndefined(oceania);
+
+            console.log(oceania);
 
 
         })
@@ -58,9 +74,9 @@ let oceania = countries
     .map(country => country.currency.split(',').shift())
     .reduce((j, k) => j.add(k), new Set())
 
-
+// Sorteer API per continent
 const filterContinents = (data, continent) => {
-    Object.keys(data.rates).map(key => {
+    return Object.keys(data.rates).map(key => {
         if(continent.has(key) && key !== 'EUR') {
             return `${key}: ${data.rates[key]}`;
             // console.log(`${key}: ${data.rates[key]}`)
@@ -68,22 +84,9 @@ const filterContinents = (data, continent) => {
     });
 }
 
+// Undefined uit array verwijderen
 const removeUndefined = continent => {
-    continent.filter(entry => {
+    return continent.filter(entry => {
         return entry !== undefined;
     });
 }
-
-
-// Sorteer API per continent
-// europe = Object.keys(data.rates).map(key => {
-//     if(europe.has(key) && key !== 'EUR') {
-//         return `${key}: ${data.rates[key]}`;
-//     }
-// });
-
-// europe = europe.filter(entry => {
-//     return entry !== undefined;
-// });
-
-
