@@ -1,7 +1,7 @@
 # Functional Programming
 Welcome to the Readme for my repository for Functional Programming. You can find alle the information about the content inside this repository and how to transfer it to your own PC.
 
-:clipboard: ## Table of Contents
+## :clipboard: Table of Contents
 
 * [Concept](https://github.com/dannyfrelink/Functional-programming#concept)
 * [Process (Wiki)](https://github.com/dannyfrelink/Functional-programming#wiki)
