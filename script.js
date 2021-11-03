@@ -73,7 +73,6 @@ const filterContinents = (data, continent) => {
     return Object.keys(data.rates).map(key => {
         if(continent.has(key) && key !== 'EUR') {
             return `${key}: ${data.rates[key]}`;
-            // console.log(`${key}: ${data.rates[key]}`)
         }
     });
 }
