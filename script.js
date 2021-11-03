@@ -60,8 +60,8 @@ fetch('https://exchangerate-api.p.rapidapi.com/rapid/latest/EUR', {
         // console.log(europe)
 
         europe = Object.keys(data.rates).map(key => {
-            if(europe.has(key)) {
-                return `${key}: ${data.rates[key]}`
+            if(europe.has(key) && key !== 'EUR') {
+                return `${key}: ${data.rates[key]}`;
             }
         });
 
