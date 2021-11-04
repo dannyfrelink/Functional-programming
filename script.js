@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import countriesList from 'countries-list';
 const countries = Object.values(countriesList.countries); 
 
-const dataOphalen = () => {
+const fetchData = () => {
     // Ophalen API Currency exchange rate https://rapidapi.com/exchangerateapi/api/exchangerate-api/
     fetch('https://exchangerate-api.p.rapidapi.com/rapid/latest/EUR', {
         'method': 'GET',
@@ -59,7 +59,7 @@ const dataOphalen = () => {
             console.error(err);
         });
 }
-dataOphalen();
+fetchData();
 
 // Sorteer alle currencies per continent
 const sortCurrencies = continent => {
