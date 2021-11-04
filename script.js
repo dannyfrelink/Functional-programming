@@ -2,8 +2,8 @@ import fetch from 'node-fetch';
 import countriesList from 'countries-list';
 const countries = Object.values(countriesList.countries); 
 
-// Ophalen API Currency exchange rate https://rapidapi.com/exchangerateapi/api/exchangerate-api/
 const dataOphalen = () => {
+    // Ophalen API Currency exchange rate https://rapidapi.com/exchangerateapi/api/exchangerate-api/
     fetch('https://exchangerate-api.p.rapidapi.com/rapid/latest/EUR', {
         'method': 'GET',
         'headers': {
@@ -61,36 +61,20 @@ const dataOphalen = () => {
 }
 dataOphalen();
 
-// Verdelen van alle valuta's per continent
-const europeanCurrencies = countries
-    .filter(country => country.continent === 'EU')
-    .map(country => country.currency.split(',').shift())
-    .reduce((j, k) => j.add(k), new Set())
+// Sorteer alle currencies per continent
+const sortCurrencies = continent => {
+    return countries
+        .filter(country => country.continent === continent)
+        .map(country => country.currency.split(',').shift())
+        .reduce((j, k) => j.add(k), new Set())
+}
 
-const southAmericanCurrencies = countries
-    .filter(country => country.continent === 'SA')
-    .map(country => country.currency.split(',').shift())
-    .reduce((j, k) => j.add(k), new Set())
-
-const northAmericanCurrencies = countries
-    .filter(country => country.continent === 'NA')
-    .map(country => country.currency.split(',').shift())
-    .reduce((j, k) => j.add(k), new Set())
-
-const africanCurrencies = countries
-    .filter(country => country.continent === 'AF')
-    .map(country => country.currency.split(',').shift())
-    .reduce((j, k) => j.add(k), new Set())
-
-const asianCurrencies = countries
-    .filter(country => country.continent === 'AS')
-    .map(country => country.currency.split(',').shift())
-    .reduce((j, k) => j.add(k), new Set())
-
-const oceanianCurrencies = countries
-    .filter(country => country.continent === 'OC')
-    .map(country => country.currency.split(',').shift())
-    .reduce((j, k) => j.add(k), new Set())
+const europeanCurrencies = sortCurrencies('EU');
+const southAmericanCurrencies = sortCurrencies('SA');
+const northAmericanCurrencies = sortCurrencies('NA');
+const africanCurrencies = sortCurrencies('AF');
+const asianCurrencies = sortCurrencies('AS');
+const oceanianCurrencies = sortCurrencies('OC');
 
 // Sorteer API per continent
 const filterContinents = (data, continent) => {
