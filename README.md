@@ -6,7 +6,7 @@ Welcome to the Readme for my repository for Functional Programming. You can find
 * [Concept](https://github.com/dannyfrelink/Functional-programming#concept)
 * [Process (Wiki)](https://github.com/dannyfrelink/Functional-programming#wiki)
 * [Wishlist](https://github.com/dannyfrelink/Functional-programming#wishlist)
-* [Installing](https://github.com/dannyfrelink/Functional-programming#installing)
+* [Installation](https://github.com/dannyfrelink/Functional-programming#installation)
 * [License](https://github.com/dannyfrelink/Functional-programming#license)
 
 ## 💡 Concept

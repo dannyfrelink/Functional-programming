@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import countriesList from 'countries-list';
-const countries = Object.values(countriesList.countries); 
+const countries = Object.values(countriesList.countries);
 
 const fetchData = () => {
     // Ophalen API Currency exchange rate https://rapidapi.com/exchangerateapi/api/exchangerate-api/
@@ -18,42 +18,42 @@ const fetchData = () => {
             europe = removeUndefined(europe);
             let valuesEurope = getCurrencyValues(data, europeanCurrencies);
             valuesEurope = removeUndefined(valuesEurope);
-            const averageEurope = Math.round(valuesEurope.reduce((a,b) => a + b, 0) / valuesEurope.length)
+            const averageEurope = Math.round(valuesEurope.reduce((a, b) => a + b, 0) / valuesEurope.length)
 
             // SouthAmerican callbacks
             let southAmerika = filterContinents(data, southAmericanCurrencies);
             southAmerika = removeUndefined(southAmerika);
             let valuesSouthAmerika = getCurrencyValues(data, southAmericanCurrencies);
             valuesSouthAmerika = removeUndefined(valuesSouthAmerika);
-            const averageSouthAmerika = Math.round(valuesSouthAmerika.reduce((a,b) => a + b, 0) / valuesSouthAmerika.length)
+            const averageSouthAmerika = Math.round(valuesSouthAmerika.reduce((a, b) => a + b, 0) / valuesSouthAmerika.length)
 
             // NorthAmerican callbacks
             let northAmerika = filterContinents(data, northAmericanCurrencies);
             northAmerika = removeUndefined(northAmerika);
             let valuesNorthAmerika = getCurrencyValues(data, northAmericanCurrencies);
             valuesNorthAmerika = removeUndefined(valuesNorthAmerika);
-            const averageNorthAmerika = Math.round(valuesNorthAmerika.reduce((a,b) => a + b, 0) / valuesNorthAmerika.length)
+            const averageNorthAmerika = Math.round(valuesNorthAmerika.reduce((a, b) => a + b, 0) / valuesNorthAmerika.length)
 
             // African callbacks
             let africa = filterContinents(data, africanCurrencies);
             africa = removeUndefined(africa);
             let valuesAfrica = getCurrencyValues(data, africanCurrencies);
             valuesAfrica = removeUndefined(valuesAfrica);
-            const averageAfrica = Math.round(valuesAfrica.reduce((a,b) => a + b, 0) / valuesAfrica.length)
+            const averageAfrica = Math.round(valuesAfrica.reduce((a, b) => a + b, 0) / valuesAfrica.length)
 
             // Asian callbacks
             let asia = filterContinents(data, asianCurrencies);
             asia = removeUndefined(asia);
             let valuesAsia = getCurrencyValues(data, asianCurrencies);
             valuesAsia = removeUndefined(valuesAsia);
-            const averageAsia = Math.round(valuesAsia.reduce((a,b) => a + b, 0) / valuesAsia.length)
+            const averageAsia = Math.round(valuesAsia.reduce((a, b) => a + b, 0) / valuesAsia.length)
 
             // Oceanian callbacks
             let oceania = filterContinents(data, oceanianCurrencies);
             oceania = removeUndefined(oceania);
             let valuesOceania = getCurrencyValues(data, oceanianCurrencies);
             valuesOceania = removeUndefined(valuesOceania);
-            const averageOceania = Math.round(valuesOceania.reduce((a,b) => a + b, 0) / valuesOceania.length)
+            const averageOceania = Math.round(valuesOceania.reduce((a, b) => a + b, 0) / valuesOceania.length)
         })
         .catch(err => {
             console.error(err);
@@ -79,7 +79,7 @@ const oceanianCurrencies = sortCurrencies('OC');
 // Sorteer API per continent
 const filterContinents = (data, continent) => {
     return Object.keys(data.rates).map(key => {
-        if(continent.has(key) && key !== 'EUR') {
+        if (continent.has(key) && key !== 'EUR') {
             return `${key}: ${data.rates[key]}`;
         }
     });
@@ -95,7 +95,7 @@ const removeUndefined = continent => {
 // Ophalen alle waardes per continent
 const getCurrencyValues = (data, continent) => {
     return Object.keys(data.rates).map(key => {
-        if(continent.has(key) && key !== 'EUR') {
+        if (continent.has(key) && key !== 'EUR') {
             return data.rates[key]
         }
     });
